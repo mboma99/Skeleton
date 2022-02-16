@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCustomer.cs" />
+    <Compile Include="clsOrderLine.cs" />
     <Compile Include="clsOrders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
