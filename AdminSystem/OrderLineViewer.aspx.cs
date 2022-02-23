@@ -6,14 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
 
-public partial class _1Viewer : System.Web.UI.Page
+public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        clsOrders AnOrder = new clsOrders();
+        clsOrderLine AnOrderLine = new clsOrderLine();
 
-        AnOrder = (clsOrders)Session["AnAddress"];
+        AnOrderLine = (clsOrderLine)Session["AnOrderLine"];
 
-        Response.Write(AnOrder.OrderStatus);
+        Response.Write(AnOrderLine.OrderStatus);
+
     }
 }
