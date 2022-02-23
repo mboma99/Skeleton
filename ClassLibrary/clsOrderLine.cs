@@ -9,5 +9,6 @@ namespace ClassLibrary
         public int Quantity { get; set; }
         public double PricePaid { get; set; }
         public double PetPrice { get; set; }
+        public string OrderStatus { get; set; }
     }
 }

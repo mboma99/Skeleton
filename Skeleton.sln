@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminSystem", "AdminSystem\", "{157421EE-9D45-44EB-9290-6574686CB7FC}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{e32146cf-ec09-4709-9881-42adf1b0735b}|ClassLibrary.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50298"
 		Debug.AspNetCompiler.PhysicalPath = "AdminSystem\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50298\"
