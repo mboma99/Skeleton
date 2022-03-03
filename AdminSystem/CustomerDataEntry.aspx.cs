@@ -29,10 +29,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //capture the Account accountBalance
         ACustomer.AccountBalance = Convert.ToDouble(txtAccountBalance.Text);
-        //cchek if Pending order is checked
+        
+        //check if Pending order is checked
         ACustomer.PendingOrder = lblPendingOrder.Checked;
+        
         //store name in the session object
         Session["ACustomer"] = ACustomer;
+        
         //navigate to the viewer page
         Response.Redirect("CustomerViewer.aspx");
 
