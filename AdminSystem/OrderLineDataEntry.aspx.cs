@@ -28,4 +28,27 @@ public partial class _Default : System.Web.UI.Page
 
         Response.Redirect("OrderLineViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsOrderLine AnOrderLine = new clsOrderLine();
+
+        Int32 OrderID;
+
+        Boolean Found = false;
+
+        OrderID = Convert.ToInt32(txtOrderID.Text);
+
+        Found = AnOrderLine.Find(OrderID);
+
+        if(Found == true)
+        {
+            txtQuantity.Text = AnOrderLine.Quantity.ToString();
+            txtPricePaid.Text = AnOrderLine.PricePaid.ToString();
+            txtPetPrice.Text = AnOrderLine.PetPrice.ToString();
+            txtPetID.Text = AnOrderLine.PetID.ToString();
+            txtOrderStatus.Text = AnOrderLine.OrderStatus;
+            txtOrderID.Text = AnOrderLine.OrderID.ToString();
+        }
+    }
 }
