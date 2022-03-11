@@ -53,7 +53,7 @@ namespace Testing1
             Assert.AreEqual(Acustomer.DateOfBirth, TestData);
         }
 
-        //QUESTION THIS ONE 
+         
         [TestMethod]
         public void CustomerDetailsAddedOK()
         {
@@ -72,7 +72,7 @@ namespace Testing1
         {
             //create an instance of class we want to create
             clsCustomer Acustomer = new clsCustomer();
-            //test data to assign to Date to 25 August 1999
+            //test data to assign to balance to £2013.94
             Double TestData = 2013.94;
             Acustomer.AccountBalance = TestData;
             //test to see if two decimal are the same
@@ -92,7 +92,161 @@ namespace Testing1
         }
 
 
+        /*
+         * FIND METHOD TESTS 
+         */
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsCustomer Acustomer = new clsCustomer();
 
+            Boolean Found = false;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestCustomerID()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.CustomerID != 1)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestNameFound()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.Name != "Beril Mathilda")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestDateOfBirthFound()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.DateOfBirth != Convert.ToDateTime("1967/02/15"))
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestCustomerDetailsFound()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.CustomerDetails != "25 North Cray Road, Bexley, DA5 3LY")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestAccountBalanceFound()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.AccountBalance != 259.99)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestPendingOrderFound()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            //Boolean to record if data is OK
+            Boolean OK = true;
+
+            Int32 CustomerID = 1;
+
+            Found = Acustomer.Find(CustomerID);
+
+            if (Acustomer.PendingOrder != true)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(Found);
+
+        }
 
     }
 }

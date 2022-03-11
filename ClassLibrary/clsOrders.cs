@@ -13,7 +13,7 @@ namespace ClassLibrary
         {
             get 
             {
-                return mOrderID
+                return mOrderID;
             
             }
 
@@ -28,7 +28,7 @@ namespace ClassLibrary
         {
             get 
             {
-                return mCustomerID
+                return mCustomerID;
             
             }
 
