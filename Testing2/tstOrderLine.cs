@@ -1,11 +1,12 @@
-﻿using ClassLibrary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Testing2
 {
-    [TestClass]
-    public class tstOrderLine
+    class tstOrderLine
     {
         [TestMethod]
         public void InstanceOK()
@@ -18,60 +19,60 @@ namespace Testing2
         [TestMethod]
         public void OrderIDAdded()
         {
-            
+
             clsOrderLine AnOrderLine = new clsOrderLine();
-            
+
             int TestData = 3;
             AnOrderLine.OrderID = TestData;
-            
+
             Assert.AreEqual(AnOrderLine.OrderID, TestData);
         }
 
         [TestMethod]
         public void PetIDAdded()
         {
-            
+
             clsOrderLine AnOrderLine = new clsOrderLine();
-            
+
             int TestData = 3;
             AnOrderLine.PetID = TestData;
-            
+
             Assert.AreEqual(AnOrderLine.PetID, TestData);
         }
 
         [TestMethod]
         public void QuantityOK()
         {
-            
+
             clsOrderLine AnOrderLine = new clsOrderLine();
-            
+
             int TestData = 3;
             AnOrderLine.Quantity = TestData;
-            
+
             Assert.AreEqual(AnOrderLine.Quantity, TestData);
         }
 
         [TestMethod]
         public void PricePaidOK()
         {
-            
+
             clsOrderLine AnOrderLine = new clsOrderLine();
-            
+
             Double TestData = 3.55;
             AnOrderLine.PricePaid = TestData;
-            
+
             Assert.AreEqual(AnOrderLine.PricePaid, TestData);
         }
 
         [TestMethod]
         public void PetPriceOK()
         {
-            
+
             clsOrderLine AnOrderLine = new clsOrderLine();
-            
+
             Double TestData = 3.55;
             AnOrderLine.PetPrice = TestData;
-            
+
             Assert.AreEqual(AnOrderLine.PetPrice, TestData);
         }
 
@@ -254,7 +255,5 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
-
-
     }
 }
