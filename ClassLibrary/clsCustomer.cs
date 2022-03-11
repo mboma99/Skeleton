@@ -51,13 +51,13 @@ namespace ClassLibrary
             set { mPendingOrder = value; }
         }
 
-        public bool Find(int customerID)
+        public bool Find(int CustomerID)
         {
             //create an instace of a data connection 
             clsDataConnection DB = new clsDataConnection();
 
             //add the parameter for the Customer Id
-            DB.AddParameter("@CusstomerID", CustomerID);
+            DB.AddParameter("@CustomerID", CustomerID);
             //execute stored Procedure
             DB.Execute("sproc_tblCustomer_FilterByCustomerID");
             //if one record is found (there should be either one or zero)
@@ -70,7 +70,7 @@ namespace ClassLibrary
                 mAccountBalance = Convert.ToDouble(DB.DataTable.Rows[0]["AccountBalance"]);
                 mPendingOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["PendingOrder"]);
 
-                //retuen true if everything worked
+                //return true if everything worked
                 return true;
             }
             //lock if no record found
