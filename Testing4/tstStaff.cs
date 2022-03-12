@@ -7,6 +7,14 @@ namespace Testing4
     [TestClass]
     public class tstStaff
     {
+        //Test data for the staff table
+        public Int32 testStaffID = 7;
+        public string testName = "Name7";
+        public DateTime testDOB = new DateTime(1997, 07, 07);
+        public string testAddress = "Address7";
+        public double testSalary = 6543.21;
+        public Boolean testIsActive = false;
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -96,9 +104,9 @@ namespace Testing4
             //Boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffID = 2;
+            //Int32 StaffID = 2;
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
@@ -113,11 +121,11 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
+            //Int32 StaffID = 2;
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.StaffID != 2)
+            if (AStaff.StaffID != testStaffID)
             {
                 OK = false;
             }
@@ -135,12 +143,12 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
-            string test1 = "\"Name1\"             ";
+            //Int32 StaffID = 2;
+            //string test1 = "\"Name1\"             ";
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.Name != test1)
+            if (AStaff.Name != testName)
             {
                 OK = false;
             }
@@ -158,12 +166,12 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
-            DateTime test1 = new DateTime(2022, 01, 01);
+            //Int32 StaffID = 2;
+            //DateTime test1 = new DateTime(2022, 01, 01);
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.DOB != test1)
+            if (AStaff.DOB != testDOB)
             {
                 OK = false;
             }
@@ -181,12 +189,12 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
-            string test1 = "\"Address1\"";
+            //Int32 StaffID = 2;
+            //string test1 = "\"Address1\"";
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.Address != test1)
+            if (AStaff.Address != testAddress)
             {
                 OK = false;
             }
@@ -204,11 +212,11 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
+            //Int32 StaffID = 2;
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.Salary != 111.11)
+            if (AStaff.Salary != 6543.21)
             {
                 OK = false;
             }
@@ -226,11 +234,11 @@ namespace Testing4
             //boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 2;
+            //Int32 StaffID = 2;
             //invoke the method
-            Found = AStaff.Find(StaffID);
+            Found = AStaff.Find(testStaffID);
             //check the staff ID
-            if (AStaff.IsActive != true)
+            if (AStaff.IsActive != false)
             {
                 OK = false;
             }
