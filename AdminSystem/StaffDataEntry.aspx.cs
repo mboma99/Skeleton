@@ -34,4 +34,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStaff AStaff = new clsStaff();
+        Int32 StaffID;
+        Boolean Found = false;
+        StaffID = Convert.ToInt32(txtStaffID.Text);
+        Found = AStaff.Find(StaffID);
+        if (Found == true)
+        {
+            //txtStaffID.Text = AStaff.StaffID;
+            txtName.Text = AStaff.Name;
+            txtDOB.Text = Convert.ToString(AStaff.DOB);
+            txtAddress.Text = AStaff.Address;
+            txtSalary.Text = Convert.ToString(AStaff.Salary);
+            chkActive.Checked = AStaff.IsActive;
+        }
+    }
 }
