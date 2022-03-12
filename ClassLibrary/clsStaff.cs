@@ -85,9 +85,9 @@ namespace ClassLibrary
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the staff ID to search for
-            DB.AddParameter("@StaffID", StaffID);
+            DB.AddParameter("@StaffID", staffID);
             //execute the stored procedure
-            DB.Execute("dbo.sproc_tblStaff_FilterByStaffID");
+            DB.Execute("sproc_tblStaff_FilterByStaffID");
             //if one record is found (there should be either one or zero!)
             if (DB.Count == 1)
             {
