@@ -658,5 +658,155 @@ namespace Testing4
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void SalaryExtremeMin()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = -9999.99; //this should trigger an error
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMinLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = -1.0; //this should trigger an error
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMin()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 0.0; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMinPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 1.0; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 9998.99; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 9999.99; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 10000.99; //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMid()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 4999.99; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryExtremeMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            double testSalary = 9999999.99; //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryInvalidData()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Set the Salary to a non data value
+            string testSalary = "this is not a valid double";
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, testSalary);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }
