@@ -17,17 +17,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
-        //capture the staff data
-        AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
-        AStaff.Name = txtName.Text;
-        AStaff.DOB = Convert.ToDateTime(txtDOB.Text);
-        AStaff.Address = txtAddress.Text;
-        AStaff.Salary = Convert.ToDouble(txtSalary.Text);
-        AStaff.IsActive = chkActive.Checked;
-        //store the staff ID in the session object
-        Session["AStaff"] = AStaff;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        //capture the staff data for validation
+        string Name = txtName.Text;
+        string DOB = txtDOB.Text;
+        string Address = txtAddress.Text;
+        string Salary = txtSalary.Text;
+        //variable to store any error messages
+        string Error = "";
+        //Validate the data
+        Error = AStaff.Valid(Name, DOB, Address, Salary);
+        if (Error == "")
+        {
+            //clear Error label
+            lblError.Text = "";
+            //capture the staff data
+            AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
+            AStaff.Name = txtName.Text;
+            AStaff.DOB = Convert.ToDateTime(txtDOB.Text);
+            AStaff.Address = txtAddress.Text;
+            AStaff.Salary = Convert.ToDouble(txtSalary.Text);
+            AStaff.IsActive = chkActive.Checked;
+            //store the staff ID in the session object
+            Session["AStaff"] = AStaff;
+            //navigate to the viewer page
+            Response.Write("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error
+            lblError.Text = Error;
+        }
+        
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
