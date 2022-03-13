@@ -116,5 +116,83 @@ namespace ClassLibrary
             //always return true
             return true;*/
         }
+
+        public string Valid(string name, string dob, string address, string salary)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the values
+            DateTime tempDOB;
+            DateTime minAge = DateTime.Now.Date.AddYears(-18);
+            DateTime maxAge = DateTime.Now.Date.AddYears(-100);
+            double tempSalary;
+
+            //if the Name is blank
+            if (name.Length == 0)
+            {
+                Error += "The Name my not be blank : ";
+            }
+            //if the Name is greater than 20 characters
+            if (name.Length > 20)
+            {
+                Error += "The Name must be less than 20 characters : ";
+            }
+
+            try
+            {
+                //copy the dob value to the tempDOB variable
+                tempDOB = Convert.ToDateTime(dob);
+                //check to see if the dob less than 18 years
+                if (tempDOB > minAge)
+                {
+                    Error += "The DOB cannot be less than 18 years old : ";
+                }
+                //check to see if the dob less than 18 years
+                if (tempDOB < maxAge)
+                {
+                    Error += "The DOB cannot be more than 100 years old : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error += "The date was not a valid date : ";
+            }
+
+            //if the address is blank
+            if (address.Length == 0)
+            {
+                Error += "The Address may not be blank : ";
+            }
+            //if the address is greater than 50 characters
+            if (address.Length > 50)
+            {
+                Error += "The Address must be less than 50 chanracters : ";
+            }
+
+            try
+            {
+                //copy the salary value to tempSalary variable
+                tempSalary = Convert.ToDouble(salary);
+                //if the Salary is less than zero
+                if (tempSalary < 0.0)
+                {
+                    Error += "The Salary cannot be less than zero : ";
+                }
+                //if the Salary is more than 9999.99
+                if (tempSalary > 9999.99)
+                {
+                    Error += "The Salary cannot be more than 9999.99";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error += "The Salary was not a valid double : ";
+            }
+
+            //return any error messages
+            return Error;
+        }
     }
 }
