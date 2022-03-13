@@ -116,5 +116,23 @@ namespace ClassLibrary
             //always return true
             return true;*/
         }
+
+        public string Valid(string name, DateTime dob, string address, double salary)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the Name is blank
+            if (name.Length == 0)
+            {
+                Error += "The Name my not be blank : ";
+            }
+            //if the Name is greater than 20 charactors
+            if (name.Length > 20)
+            {
+                Error += "The Name must be less than 20 charactors";
+            }
+            //return any error messages
+            return Error;
+        }
     }
 }
