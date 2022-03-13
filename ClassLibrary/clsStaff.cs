@@ -117,10 +117,15 @@ namespace ClassLibrary
             return true;*/
         }
 
-        public string Valid(string name, DateTime dob, string address, double salary)
+        public string Valid(string name, string dob, string address, string salary)
         {
             //create a string variable to store the error
             String Error = "";
+            //create a temporary variable to store the values
+            DateTime tempDOB;
+            DateTime minAge = DateTime.Now.Date.AddYears(-18);
+            DateTime maxAge = DateTime.Now.Date.AddYears(-100);
+
             //if the Name is blank
             if (name.Length == 0)
             {
@@ -129,8 +134,30 @@ namespace ClassLibrary
             //if the Name is greater than 20 charactors
             if (name.Length > 20)
             {
-                Error += "The Name must be less than 20 charactors";
+                Error += "The Name must be less than 20 charactors: ";
             }
+
+            try
+            {
+                //copy the dob value to the tempDOB variable
+                tempDOB = Convert.ToDateTime(dob);
+                //check to see if the dob less than 18 years
+                if (tempDOB > minAge)
+                {
+                    Error += "The DOB cannot be less than 18 years old : ";
+                }
+                //check to see if the dob less than 18 years
+                if (tempDOB < maxAge)
+                {
+                    Error += "The DOB cannot be more than 100 years old : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error += "The date was not a valid date : ";
+            }
+            
             //return any error messages
             return Error;
         }

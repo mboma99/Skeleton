@@ -254,7 +254,7 @@ namespace Testing4
             //string variable to store any error essage
             String Error = "";
             //invoke the method
-            Error = AStaff.Valid(Name, DOB, Address, Salary);
+            Error = AStaff.Valid(Name, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -269,7 +269,7 @@ namespace Testing4
             //Create some test data to pass to the method
             string testName = ""; //this should trigger an error
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -284,7 +284,7 @@ namespace Testing4
             //Create some test data to pass to the method
             string testName = "a"; //this should be OK
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -299,7 +299,7 @@ namespace Testing4
             //Create some test data to pass to the method
             string testName = "aa"; //this should be OK
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -315,7 +315,7 @@ namespace Testing4
             string testName = "";
             testName = testName.PadRight(19, 'a'); //this should be OK
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -331,7 +331,7 @@ namespace Testing4
             string testName = "";
             testName = testName.PadRight(20, 'a'); //this should be OK
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -347,7 +347,7 @@ namespace Testing4
             string testName = "";
             testName = testName.PadRight(21, 'a'); //this should fail
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -363,7 +363,7 @@ namespace Testing4
             string testName = "";
             testName = testName.PadRight(10, 'a'); //this should be OK
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -379,7 +379,141 @@ namespace Testing4
             string testName = "";
             testName = testName.PadRight(1000, 'a'); //this should fail
             //invoke the method
-            Error = AStaff.Valid(testName, DOB, Address, Salary);
+            Error = AStaff.Valid(testName, DOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBExtremeMin()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date; //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMinLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-17); //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMin()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-18); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DOBMinPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-19); //this should be ok
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMaxLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-99); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-100); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMaxPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-101); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBExtremeMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-999); //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBInvalidData()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Set the DOB to a non data value
+            string testDOB = "this is not a date!";
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB, Address, Salary.ToString());
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
