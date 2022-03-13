@@ -131,10 +131,10 @@ namespace ClassLibrary
             {
                 Error += "The Name my not be blank : ";
             }
-            //if the Name is greater than 20 charactors
+            //if the Name is greater than 20 characters
             if (name.Length > 20)
             {
-                Error += "The Name must be less than 20 charactors: ";
+                Error += "The Name must be less than 20 characters: ";
             }
 
             try
@@ -156,6 +156,17 @@ namespace ClassLibrary
             {
                 //record the error
                 Error += "The date was not a valid date : ";
+            }
+
+            //if the address is blank
+            if (address.Length == 0)
+            {
+                Error += "The Address may not be blank";
+            }
+            //if the address is greater than 50 characters
+            if (address.Length > 50)
+            {
+                Error += "The Address must be less than 50 chanracters";
             }
             
             //return any error messages

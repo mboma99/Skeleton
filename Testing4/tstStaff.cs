@@ -428,6 +428,7 @@ namespace Testing4
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
         [TestMethod]
         public void DOBMinPlusOne()
         {
@@ -489,6 +490,21 @@ namespace Testing4
         }
 
         [TestMethod]
+        public void DOBMid()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime testDOB = DateTime.Now.Date.AddYears(-59); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, testDOB.ToString(), Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
         public void DOBExtremeMax()
         {
             //create an instance of staff class
@@ -514,6 +530,131 @@ namespace Testing4
             string testDOB = "this is not a date!";
             //invoke the method
             Error = AStaff.Valid(Name, testDOB, Address, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMinLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = ""; //this should trigger an error
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMin()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "a"; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMinPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "aa"; //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMaxLessOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "";
+            testAddress = testAddress.PadRight(49, 'a'); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "";
+            testAddress = testAddress.PadRight(50, 'a'); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMaxPlusOne()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "";
+            testAddress = testAddress.PadRight(51, 'a'); //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressMid()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "";
+            testAddress = testAddress.PadRight(25, 'a'); //this should be OK
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AddressExtremeMax()
+        {
+            //create an instance of staff class
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error essage
+            String Error = "";
+            //Create some test data to pass to the method
+            string testAddress = "";
+            testAddress = testAddress.PadRight(1000, 'a'); //this should fail
+            //invoke the method
+            Error = AStaff.Valid(Name, DOB.ToString(), testAddress, Salary.ToString());
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
