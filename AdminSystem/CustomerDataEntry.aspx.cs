@@ -19,25 +19,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsCustomer ACustomer = new clsCustomer();
 
         //capture the Customer Name
-        ACustomer.Name = txtName.Text;
+        String Name = txtName.Text;
 
         //capture The CustomerDOB
-        ACustomer.DateOfBirth = Convert.ToDateTime(txtDOB.Text);
+        String DateOfBirth = txtDOB.Text;
 
         //capture the Customer Details
-        ACustomer.CustomerDetails = txtCustomerDetails.Text;
+        String CustomerDetails = txtCustomerDetails.Text;
 
         //capture the Account accountBalance
-        ACustomer.AccountBalance = Convert.ToDouble(txtAccountBalance.Text);
+        String AccountBalance = txtAccountBalance.Text;
+
+        //Store error messages
+        String Error = "";
+
+        //Validate the data 
+        Error = ACustomer.Valid(Name, DateOfBirth, CustomerDetails, AccountBalance);
+        if (Error == "") 
+        {
+            //capture Name 
+            ACustomer.Name = Name;
+            //Capture DOB
+            ACustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            //Capture Customer Details
+            ACustomer.CustomerDetails = CustomerDetails;
+            //Capture Account Balance
+            ACustomer.AccountBalance = Convert.ToDouble(AccountBalance);
+            //store name in the session object
+            Session["ACustomer"] = ACustomer;
+            //navigate to the viewer page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message 
+            lblError.Text = Error;
+        }
         
-        //check if Pending order is checked
-        ACustomer.PendingOrder = lblPendingOrder.Checked;
-        
-        //store name in the session object
-        Session["ACustomer"] = ACustomer;
-        
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
 
 
     }
