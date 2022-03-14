@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" width="115px"></asp:Label>
         <asp:TextBox ID="txtCustomerID" runat="server" OnTextChanged="TextBox1_TextChanged" style="margin-left: 0px"></asp:TextBox>
+        <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click" Text="Find" />
         <br />
         <asp:Label ID="lblName" runat="server" Text="Name" width="115px"></asp:Label>
         <asp:TextBox ID="txtName" runat="server" style="margin-left: 0px"></asp:TextBox>   
