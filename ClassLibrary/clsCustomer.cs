@@ -110,7 +110,7 @@ namespace ClassLibrary
                 }
                 if (DateTemp > DateTime.Now.Date.AddYears(-18))
                 {
-                    Error += "Too young to make account : ";
+                    Error += "Too young to make account, must be at least 18 years old : ";
                 }
             }
             catch
