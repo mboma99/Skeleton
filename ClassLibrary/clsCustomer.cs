@@ -80,5 +80,43 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string name, string dob, string customerDetails, string accountBalance)
+        {
+            //create a string variable to store the error 
+            String Error = "";
+            //Create Date Time of temp variable
+            DateTime DateTemp;
+            //if Name is blank/empty
+            if (name.Length == 0)
+            {
+                //record error 
+                Error += "The Name may cannot be left blank : ";
+            }
+            if (name.Length > 50)
+            {
+                Error += "The name cannot have more than 50 characters : ";
+            }
+            try
+            {
+                //copy dob to DataTemp
+                DateTemp = Convert.ToDateTime(dob);
+                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                {
+                    //record error
+                    Error += "DOB must be within the last 100 years";
+                }
+                if (DateTemp > DateTime.Now.Date.AddYears(-18))
+                {
+                    Error += "Too young to make account : ";
+                }
+            }
+            catch
+            {
+                Error += "The date was not a valid date : ";
+            }
+            //return any error message 
+            return Error;
+        }
     }
 }
