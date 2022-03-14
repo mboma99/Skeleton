@@ -386,6 +386,196 @@ namespace Testing1
             Assert.AreNotEqual(Error, "");
         }
 
+        /*
+         * 
+         * DOB TESTS
+         * 
+         */
 
+        [TestMethod]
+        public void DobExtremeMin()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            //change date to extreme date -150
+            TestDate = TestDate.AddYears(-150);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMinLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-101);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMin()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMinPlusOne ()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-99);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMid()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-50);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMaxLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-19);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-18);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobMaxPlusOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-17);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobExtremeMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            DateTime TestDate;
+            //set to todays date
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(+10);
+            //Set dat of birth
+            String Dob = TestDate.ToString();
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DobInvalidDate()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //Input that is not date 
+            String Dob = "This is not a date";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }
