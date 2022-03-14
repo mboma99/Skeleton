@@ -66,4 +66,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        clsCustomer Acustomer = new clsCustomer();
+
+        Int32 CustomerID;
+
+        Boolean Found = false;
+
+        CustomerID = Convert.ToInt32(txtCustomerID.Text);
+
+        Found = Acustomer.Find(CustomerID);
+
+        if (Found == true)
+        {
+            txtCustomerID.Text = Acustomer.CustomerID.ToString();
+            txtName.Text = Acustomer.Name;
+            txtDOB.Text = Acustomer.DateOfBirth.ToString();
+            txtCustomerDetails.Text = Acustomer.CustomerDetails;
+            txtAccountBalance.Text = Acustomer.AccountBalance.ToString();
+        }
+    }
 }
