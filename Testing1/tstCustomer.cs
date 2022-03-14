@@ -271,8 +271,11 @@ namespace Testing1
             Assert.AreEqual(Error, "");
         }
 
-        //Name Item Tests 
-
+        /*
+         *
+         *NAME VALIDATION
+         *
+         */
         [TestMethod]
         public void NameMinLessOne()
         {
@@ -572,6 +575,262 @@ namespace Testing1
             String Error = "";
             //Input that is not date 
             String Dob = "This is not a date";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        /*
+         * 
+         * CUSTOMER DETAILS TESTS 
+         *
+         */
+
+        [TestMethod]
+        public void CustomerDetailsMinLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = ""; // this will trigger error
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMin()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "a";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMinPlusOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "aa";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMid()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "";
+            CustomerDetails = CustomerDetails.PadRight(100, 'a');
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMaxLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "";
+            CustomerDetails = CustomerDetails.PadRight(199, 'a');
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "";
+            CustomerDetails = CustomerDetails.PadRight(200, 'a');
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsMaxPlusOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "";
+            CustomerDetails = CustomerDetails.PadRight(201, 'a');
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerDetailsExtremeMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String CustomerDetails = "";
+            CustomerDetails = CustomerDetails.PadRight(400, 'a'); // this will trigger error
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        /*
+         *
+         * ACCOUNT BALANCE 
+         * 
+         */
+
+        [TestMethod]
+        public void AccountBalanceLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "-0.99";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMin()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "1.00";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMinPlusOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "1.01";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMid()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "500.00";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMaxLessOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "999.98";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "999.99";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceMaxPlusOne()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String AccountBalance = "1000.00";
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceExtremeMax()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //create some test to pass test
+            String Name = "";
+            String AccountBalance = "2000.00"; // this will trigger error
+            //Invoke the method 
+            Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
+            //TEST TO SEE THAT THE RESULTS ARE CORRECT
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void AccountBalanceInvalidDate()
+        {
+            clsCustomer Acustomer = new clsCustomer();
+            //String variable to store any Error Message
+            String Error = "";
+            //Input that is not date 
+            String AccountBalance = "This is not a double";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT
