@@ -87,6 +87,8 @@ namespace ClassLibrary
             String Error = "";
             //Create Date Time of temp variable
             DateTime DateTemp;
+            //create Double for temp variable 
+            Double DoubleTemp;
             //if Name is blank/empty
             if (name.Length == 0)
             {
@@ -104,7 +106,7 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date.AddYears(-100))
                 {
                     //record error
-                    Error += "DOB must be within the last 100 years";
+                    Error += "DOB must be within the last 100 years : ";
                 }
                 if (DateTemp > DateTime.Now.Date.AddYears(-18))
                 {
@@ -114,6 +116,35 @@ namespace ClassLibrary
             catch
             {
                 Error += "The date was not a valid date : ";
+            }
+            if (customerDetails.Length == 0)
+            {
+                Error += "Can't leave Address Blank : ";
+            }
+            if (customerDetails.Length > 200)
+            {
+                Error += "Customer details cannot have more than 200 characters : ";
+            }
+            if (customerDetails.Length < 1)
+            {
+                Error += "Please Enter valid details, cannot be less than 1 character : ";
+            }
+            try
+            {
+                DoubleTemp = Convert.ToDouble(accountBalance);
+                if (DoubleTemp < 0.00)
+                {
+                    Error += "Value is less than valid Account Balance. 0.00 is allowed minimum : ";
+                }
+                if (DoubleTemp > 999.99)
+                {
+                    Error += "Value is more than valid Account Balance. 999.99 is allowed maximum : ";
+                }
+
+            }
+            catch
+            {
+                Error += "This is a valid double value : ";
             }
             //return any error message 
             return Error;
