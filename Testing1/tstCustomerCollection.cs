@@ -89,6 +89,30 @@ namespace Testing1
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
 
-
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create instance of class collection
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item to test Data 
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            //set properties 
+            TestItem.CustomerID = 1;
+            TestItem.Name = "Beril Mathilda";
+            TestItem.DateOfBirth = Convert.ToDateTime("1967-02-15");
+            TestItem.CustomerDetails = "25 North Cray Road, DA5 3LY";
+            TestItem.AccountBalance = 259.99;
+            TestItem.PendingOrder = true;
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record 
+            PrimaryKey = AllCustomers.Add();
+            //Set primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see that it exist 
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
     }
 }

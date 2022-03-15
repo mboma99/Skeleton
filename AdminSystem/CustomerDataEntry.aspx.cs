@@ -45,10 +45,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.CustomerDetails = CustomerDetails;
             //Capture Account Balance
             ACustomer.AccountBalance = Convert.ToDouble(AccountBalance);
-            //store name in the session object
-            Session["ACustomer"] = ACustomer;
-            //navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            //capture Pending Order
+            //ACustomer.PendingOrder = PendingOrder.Checked;
+
+            //Create a new instance of address collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //set the thisCustomer property
+            CustomerList.ThisCustomer = ACustomer;
+            //add new record 
+            CustomerList.Add();
+            Response.Redirect("CustomerList.aspx");
+
         }
         else
         {
