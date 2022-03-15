@@ -145,7 +145,7 @@ namespace ClassLibrary
             }
             catch
             {
-                Error += "This is a valid double value : ";
+                Error += "This is not a valid double value : ";
             }
             //return any error message 
             return Error;
