@@ -88,7 +88,7 @@ namespace ClassLibrary
             //Create Date Time of temp variable
             DateTime DateTemp;
             //create Double for temp variable 
-            Double DoubleTemp;
+            double DoubleTemp;
             //if Name is blank/empty
             if (name.Length == 0)
             {
@@ -117,6 +117,7 @@ namespace ClassLibrary
             {
                 Error += "The date was not a valid date : ";
             }
+
             if (customerDetails.Length == 0)
             {
                 Error += "Can't leave Address Blank : ";
@@ -136,7 +137,7 @@ namespace ClassLibrary
                 {
                     Error += "Value is less than valid Account Balance. 0.00 is allowed minimum : ";
                 }
-                if (DoubleTemp > 999.99)
+                if (DoubleTemp > 1000.00)
                 {
                     Error += "Value is more than valid Account Balance. 999.99 is allowed maximum : ";
                 }
