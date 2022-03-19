@@ -46,7 +46,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //Capture Account Balance
             ACustomer.AccountBalance = Convert.ToDouble(AccountBalance);
             //capture Pending Order
-            //ACustomer.PendingOrder = PendingOrder.Checked;
+            ACustomer.PendingOrder = lblPendingOrder.Checked;
 
             //Create a new instance of address collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
