@@ -12,7 +12,7 @@
         </div>
         <asp:ListBox ID="lstStaffList" runat="server" Height="566px" Width="387px"></asp:ListBox>
         <p>
-            <asp:Button ID="Button1" runat="server" Text="Button" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
         </p>
     </form>
 </body>

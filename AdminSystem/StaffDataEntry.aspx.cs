@@ -37,10 +37,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.Address = txtAddress.Text;
             AStaff.Salary = Convert.ToDouble(txtSalary.Text);
             AStaff.IsActive = chkActive.Checked;
-            //store the staff ID in the session object
-            Session["AStaff"] = AStaff;
-            //navigate to the viewer page
-            Response.Write("StaffViewer.aspx");
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set the SingleStaff property
+            StaffList.SingleStaff = AStaff;
+            //add the new record
+            StaffList.Add();
+            //redirect back to teh list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {

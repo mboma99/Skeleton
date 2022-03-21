@@ -87,10 +87,16 @@ namespace ClassLibrary
         public int Add()
         {
             //add a new record to the database based on the values of mSinglestaff
-            //set the primary key value of the new record
-            mSingleStaff.StaffID = 7;
-            //return the primary key of the new record
-            return mSingleStaff.StaffID;
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("Name", mSingleStaff.Name);
+            DB.AddParameter("DOB", mSingleStaff.DOB);
+            DB.AddParameter("Address", mSingleStaff.Address);
+            DB.AddParameter("Salary", mSingleStaff.Salary);
+            DB.AddParameter("IsActive", mSingleStaff.IsActive);
+            //execute the query returning the primary key
+            return DB.Execute("sproc_tblStaff_Insert");
         }
     }
 }
