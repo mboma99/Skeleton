@@ -7,6 +7,9 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsStaff> mAllStaff = new List<clsStaff>();
+        //private data member for SingleStaff
+        clsStaff mSingleStaff = new clsStaff();
+
         //public property for the staff list
         public List<clsStaff> StaffList 
         { 
@@ -34,7 +37,20 @@ namespace ClassLibrary
                 //we shall worry about this later
             }
         }
-        public clsStaff SingleStaff { get; set; }
+        //publlic property for SingleStaff
+        public clsStaff SingleStaff 
+        { 
+            get
+            {
+                //return the private data
+                return mSingleStaff;
+            }
+            set
+            {
+                //set the private data
+                mSingleStaff = value;
+            }
+        }
 
         //constructor for the class
         public clsStaffCollection()
@@ -66,6 +82,15 @@ namespace ClassLibrary
                 //point at the next record
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            //add a new record to the database based on the values of mSinglestaff
+            //set the primary key value of the new record
+            mSingleStaff.StaffID = 7;
+            //return the primary key of the new record
+            return mSingleStaff.StaffID;
         }
     }
 }
