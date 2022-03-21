@@ -8,9 +8,20 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 StaffID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //get the number of the StaffID to be processed
+        StaffID = Convert.ToInt32(Session["StaffID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffID != -1)
+            {
+                DisplayStaff();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -37,10 +48,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.Address = txtAddress.Text;
             AStaff.Salary = Convert.ToDouble(txtSalary.Text);
             AStaff.IsActive = chkActive.Checked;
-            //store the staff ID in the session object
-            Session["AStaff"] = AStaff;
-            //navigate to the viewer page
-            Response.Write("StaffViewer.aspx");
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+
+            //if this is a new record i.e. StaffID = -1 then add the data
+            if (StaffID == -1)
+            {
+                //set the SingleStaff property
+                StaffList.SingleStaff = AStaff;
+                //add the new record
+                StaffList.Add();
+            }
+            else //otherwise it must be a update
+            {
+                //find the record to update
+                StaffList.SingleStaff.Find(StaffID);
+                //set the SingleStaff property
+                StaffList.SingleStaff = AStaff;
+                //update the record
+                StaffList.Update();
+            }
+            
+            //redirect back to teh list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
@@ -80,5 +110,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkActive.Checked = false;
             lblError.Text = "StaffID: " + StaffID + " doesn't exist";
         }
+    }
+
+    void DisplayStaff()
+    {
+        //create an instance of the staff collection
+        clsStaffCollection StaffList = new clsStaffCollection();
+        //find the record to update 
+        StaffList.SingleStaff.Find(StaffID);
+        //display the data for this record
+        txtStaffID.Text = StaffList.SingleStaff.StaffID.ToString();
+        txtName.Text = StaffList.SingleStaff.Name;
+        txtDOB.Text = StaffList.SingleStaff.DOB.ToString();
+        txtAddress.Text = StaffList.SingleStaff.Address;
+        txtSalary.Text = StaffList.SingleStaff.Salary.ToString();
+        chkActive.Checked = StaffList.SingleStaff.IsActive;
     }
 }
