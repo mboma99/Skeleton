@@ -131,7 +131,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void updateMethodOK()
+        public void UpdateMethodOK()
         {
             //create an instance of the staffCollection
             clsStaffCollection AllStaff = new clsStaffCollection();
@@ -165,6 +165,38 @@ namespace Testing4
             AllStaff.SingleStaff.Find(PrimaryKey);
             //test to see that the two values are the same
             Assert.AreEqual(AllStaff.SingleStaff, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the staffCollection
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create the item of the test data
+            clsStaff TestItem = new clsStaff();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set it's properties
+            TestItem.StaffID = 8;
+            TestItem.Name = "Name7";
+            TestItem.DOB = new DateTime(1997, 07, 07);
+            TestItem.Address = "Address7";
+            TestItem.Salary = 6543.21;
+            TestItem.IsActive = false;
+            //set SingleStaff to the test data
+            AllStaff.SingleStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //Set the primary key of the test data
+            TestItem.StaffID = PrimaryKey;
+            //find the record
+            AllStaff.SingleStaff.Find(PrimaryKey);
+            //delete the record 
+            AllStaff.Delete();
+            //now find the record
+            Boolean Found = AllStaff.SingleStaff.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.IsFalse(Found);
         }
     }
 }

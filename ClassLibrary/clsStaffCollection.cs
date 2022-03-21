@@ -111,8 +111,19 @@ namespace ClassLibrary
             DB.AddParameter("Address", mSingleStaff.Address);
             DB.AddParameter("Salary", mSingleStaff.Salary);
             DB.AddParameter("IsActive", mSingleStaff.IsActive);
-            //execute the query returning the primary key
+            //execute the stored procedure
             DB.Execute("sproc_tblStaff_Update");
+        }
+
+        public void Delete()
+        {
+            //delete the record pointed to by SingleStaff
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameter for the stored procedure
+            DB.AddParameter("@StaffID", mSingleStaff.StaffID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Delete");
         }
     }
 }
