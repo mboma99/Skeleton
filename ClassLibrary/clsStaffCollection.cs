@@ -55,33 +55,12 @@ namespace ClassLibrary
         //constructor for the class
         public clsStaffCollection()
         {
-            //var for the index
-            int Index = 0;
-            //var to store the record count
-            int RecordCount = 0;
             //object for data conneection
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while(Index < RecordCount)
-            {
-                //create a blank staff
-                clsStaff AnStaff = new clsStaff();
-                //read in the fields from the current record
-                AnStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
-                AnStaff.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
-                AnStaff.DOB = Convert.ToDateTime(DB.DataTable.Rows[Index]["DOB"]);
-                AnStaff.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
-                AnStaff.Salary = Convert.ToDouble(DB.DataTable.Rows[Index]["Salary"]);
-                AnStaff.IsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
-                //add the record to the private data member
-                mAllStaff.Add(AnStaff);
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data tale
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -124,6 +103,48 @@ namespace ClassLibrary
             DB.AddParameter("@StaffID", mSingleStaff.StaffID);
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_Delete");
+        }
+
+        public void FilterByIsActive(bool IsActive)
+        {
+            //filter the records by IsActive
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameter for the stored procedure
+            DB.AddParameter("@IsActive", IsActive);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByIsActive");
+            //populate the array list with the data tale
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //var for the index
+            int Index = 0;
+            //var to store the record count
+            int RecordCount = 0;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mAllStaff = new List<clsStaff>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank staff
+                clsStaff AnStaff = new clsStaff();
+                //read in the fields from the current record
+                AnStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
+                AnStaff.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
+                AnStaff.DOB = Convert.ToDateTime(DB.DataTable.Rows[Index]["DOB"]);
+                AnStaff.Address = Convert.ToString(DB.DataTable.Rows[Index]["Address"]);
+                AnStaff.Salary = Convert.ToDouble(DB.DataTable.Rows[Index]["Salary"]);
+                AnStaff.IsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
+                //add the record to the private data member
+                mAllStaff.Add(AnStaff);
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
