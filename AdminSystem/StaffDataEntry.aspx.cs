@@ -71,5 +71,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtSalary.Text = Convert.ToString(AStaff.Salary);
             chkActive.Checked = AStaff.IsActive;
         }
+        else
+        {
+            txtName.Text = string.Empty;
+            txtDOB.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtSalary.Text = string.Empty;
+            chkActive.Checked = false;
+            lblError.Text = "StaffID: " + StaffID + " doesn't exist";
+        }
     }
 }
