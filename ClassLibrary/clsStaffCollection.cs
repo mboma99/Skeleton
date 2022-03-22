@@ -60,7 +60,7 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_SelectAll");
             //populate the array list with the data tale
-            PopulateArray(DB);
+            PopulateList(DB);
         }
 
         public int Add()
@@ -115,10 +115,10 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterByIsActive");
             //populate the array list with the data tale
-            PopulateArray(DB);
+            PopulateList(DB);
         }
 
-        void PopulateArray(clsDataConnection DB)
+        void PopulateList(clsDataConnection DB)
         {
             //var for the index
             int Index = 0;

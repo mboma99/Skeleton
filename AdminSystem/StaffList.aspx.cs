@@ -16,11 +16,11 @@ public partial class _1_List : System.Web.UI.Page
         {
             //DisplayStaffList();
             clsStaffCollection StaffList = new clsStaffCollection();
-            DisplayGridView(StaffList);
+            DisplayStaffList(StaffList);
         }
     }
 
-    void DisplayGridView(clsStaffCollection StaffList)
+    void DisplayStaffList(clsStaffCollection StaffList)
     {
         //create an instance of the Staff Collection
         //clsStaffCollection StaffList = new clsStaffCollection();
@@ -34,17 +34,18 @@ public partial class _1_List : System.Web.UI.Page
         {
             dt.Rows.Add(AStaff.StaffID, AStaff.Name, AStaff.DOB.ToString("MM/dd/yyyy"), AStaff.Address, AStaff.Salary, AStaff.IsActive);
         }
-        GridView1.DataSource = dt;
-        GridView1.DataBind();
+        grvStaffList.DataSource = dt;
+        grvStaffList.DataBind();
     }
 
-    protected void OnSelectedIndexChanged(object sender, EventArgs e)
+    protected void grvStaffList_OnSelectedIndexChanged(object sender, EventArgs e)
     {
-        foreach (GridViewRow row in GridView1.Rows)
+        int In = grvStaffList.SelectedIndex;
+        foreach (GridViewRow row in grvStaffList.Rows)
         {
-            if (row.RowIndex == GridView1.SelectedIndex)
+            if (row.RowIndex == grvStaffList.SelectedIndex)
             {
-                row.BackColor = ColorTranslator.FromHtml("#1d90ff");
+                row.BackColor = ColorTranslator.FromHtml("#6ba4ff");
             }
             else
             {
@@ -84,12 +85,12 @@ public partial class _1_List : System.Web.UI.Page
         //var to store the primary key value of the record to be edited
         Int32 StaffID;
         //if a record has been selected from the list
-        if (GridView1.SelectedIndex != -1)
+        if (grvStaffList.SelectedIndex != -1)
         {
             //Clear the error label
             lblError.Text = "";
             //get the primary key value of the record to edit
-            StaffID = Convert.ToInt32(GridView1.SelectedRow.Cells[0].Text);
+            StaffID = Convert.ToInt32(grvStaffList.SelectedRow.Cells[0].Text);
             //store teh data in the session object
             Session["StaffID"] = StaffID;
             //redirect to the edit page
@@ -123,12 +124,12 @@ public partial class _1_List : System.Web.UI.Page
         //var to store the primary key value of the record to be deleted
         Int32 StaffID;
         //if a record has been selected from the list
-        if (GridView1.SelectedIndex != -1)
+        if (grvStaffList.SelectedIndex != -1)
         {
             //Clear the error label
             lblError.Text = "";
             //get the primary key value of the record to delete
-            StaffID = Convert.ToInt32(GridView1.SelectedRow.Cells[0].Text);
+            StaffID = Convert.ToInt32(grvStaffList.SelectedRow.Cells[0].Text);
             //store teh data in the session object
             Session["StaffID"] = StaffID;
             //redirect to the edit page
@@ -161,7 +162,7 @@ public partial class _1_List : System.Web.UI.Page
         //create an instance of the Staff Collection
         clsStaffCollection StaffList = new clsStaffCollection();
         StaffList.FilterByIsActive(chkActive.Checked);
-        DisplayGridView(StaffList);
+        DisplayStaffList(StaffList);
         /*//set the data source to list of staff in the collection
         lstStaffList.DataSource = StaffList.StaffList;
         //set the name of the primary key
@@ -180,6 +181,6 @@ public partial class _1_List : System.Web.UI.Page
     {
         //DisplayStaffList();
         clsStaffCollection StaffList = new clsStaffCollection();
-        DisplayGridView(StaffList);
+        DisplayStaffList(StaffList);
     }
 }
