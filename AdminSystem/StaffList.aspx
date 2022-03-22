@@ -10,21 +10,36 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:ListBox ID="lstStaffList" runat="server" Height="280px" Width="387px"></asp:ListBox>
-        <p>
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
-            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
-            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
-        </p>
-        <p>
-            <asp:Label ID="lblFilter" runat="server" Text="Filter by IsActive: "></asp:Label>
-            <asp:CheckBox ID="chkActive" runat="server" />
-        </p>
-        <p>
-            <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
-            <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
-        </p>
-        <asp:Label ID="lblError" runat="server"></asp:Label>
+        <asp:GridView ID="GridView1" HeaderStyle-BackColor="LightGray" HeaderStyle-ForeColor="Black" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="OnSelectedIndexChanged">
+            <Columns>
+                <asp:BoundField DataField="StaffID" HeaderText="StaffID" />
+                <asp:BoundField DataField="Name" HeaderText="Name" />
+                <asp:BoundField DataField="DOB" HeaderText="DOB" />
+                <asp:BoundField DataField="Address" HeaderText="Address" />
+                <asp:BoundField DataField="Salary" HeaderText="Salary" />
+                <asp:BoundField DataField="IsActive" HeaderText="IsActive" />
+                <asp:ButtonField Text="Select" CommandName="Select" />
+            </Columns>
+        </asp:GridView>
+        <asp:Button ID="btnAdd" runat="server" style="margin-right:10px; margin-top:10px;" Text="Add" OnClick="btnAdd_Click" CssClass="btn" />
+        <asp:Button ID="btnEdit" runat="server" style="margin-right:10px;" OnClick="btnEdit_Click" Text="Edit" CssClass="btn" />
+        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn" />
+        <br/>
+        <br/>
+        <asp:Label ID="lblFilter" runat="server" Text="Filter by IsActive: "></asp:Label>
+        <asp:CheckBox ID="chkActive" style="margin-bottom:10px;" runat="server" CssClass="btn" />
+        <br/>
+        <asp:Button ID="btnApply" runat="server" style="margin-top:5px;"  OnClick="btnApply_Click" Text="Apply" CssClass="btn" />
+        <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" style="margin-left:10px;" Text="Clear" CssClass="btn" />
+        <br/>
+        <br/>
+        <asp:Label ID="lblError" ForeColor="Red" runat="server"></asp:Label>
+        <style>
+            .btn
+            {
+                cursor: pointer;
+            }
+        </style>
     </form>
 </body>
 </html>

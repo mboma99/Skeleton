@@ -209,7 +209,7 @@ namespace Testing4
             //call the filter method
             FilteredStaff.FilterByIsActive(true);
             //test to see that the two values are the same
-            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+            Assert.AreNotEqual(AllStaff.Count, FilteredStaff.Count);
         }
     }
 }
