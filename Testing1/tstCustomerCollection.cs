@@ -147,5 +147,29 @@ namespace Testing1
             AllCustomers.ThisCustomer.Find(PrimaryKey);
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create instance of class collection
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item to test Data 
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            //set properties 
+            TestItem.CustomerID = 5;
+            TestItem.Name = "Virva Rishi";
+            TestItem.DateOfBirth = Convert.ToDateTime("1999-09-02");
+            TestItem.CustomerDetails = "1 Lawrence Avenue, Letchworth Garden City, SG6 2EX";
+            TestItem.AccountBalance = 41.78;
+            TestItem.PendingOrder = true;
+            AllCustomers.ThisCustomer = TestItem;
+
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
     }
 }
