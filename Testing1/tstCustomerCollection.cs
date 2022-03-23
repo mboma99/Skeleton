@@ -114,5 +114,38 @@ namespace Testing1
             //test to see that it exist 
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create instance of class collection
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item to test Data 
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            //set properties 
+            TestItem.CustomerID = 3;
+            TestItem.Name = "Tiara Caesonius";
+            TestItem.DateOfBirth = Convert.ToDateTime("1989-08-01");
+            TestItem.CustomerDetails = "3 Tay Close, Dronfield Woodhouse, S18 8ZS";
+            TestItem.AccountBalance = 0.00;
+            TestItem.PendingOrder = false;
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record 
+            PrimaryKey = AllCustomers.Add();
+            //Set primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //modify the tests data
+            TestItem.Name = "Tony Caesonius";
+            TestItem.DateOfBirth = Convert.ToDateTime("1989-08-25");
+            TestItem.CustomerDetails = "3A Tay Close, Dronfield Woodhouse, S18 8ZS";
+            TestItem.AccountBalance = 70.00;
+            TestItem.PendingOrder = true;
+            //set the record based on the new test data
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
     }
 }

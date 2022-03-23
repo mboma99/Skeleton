@@ -8,9 +8,33 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the CUstomer to be processed
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record 
+            if (CustomerID != -1)
+            {
+                DisplayCustomer();
+            }
+        }
+    }
+    void DisplayCustomer()
+    {
+        //create an instance of the customer book
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        //find the record to update
+        CustomerBook.ThisCustomer.Find(CustomerID);
+        //display the data for this record
+        txtCustomerID.Text = CustomerBook.ThisCustomer.CustomerID.ToString();
+        txtName.Text = CustomerBook.ThisCustomer.Name;
+        txtDOB.Text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
+        txtCustomerDetails.Text = CustomerBook.ThisCustomer.CustomerDetails;
+        txtAccountBalance.Text = CustomerBook.ThisCustomer.AccountBalance.ToString();
+        lblPendingOrder.Checked = CustomerBook.ThisCustomer.PendingOrder;
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
@@ -37,6 +61,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ACustomer.Valid(Name, DateOfBirth, CustomerDetails, AccountBalance);
         if (Error == "") 
         {
+            //capture CustomerID
+            ACustomer.CustomerID = CustomerID;
             //capture Name 
             ACustomer.Name = Name;
             //Capture DOB
@@ -50,19 +76,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             //Create a new instance of address collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            //set the thisCustomer property
-            CustomerList.ThisCustomer = ACustomer;
-            //add new record 
-            CustomerList.Add();
-            Response.Redirect("CustomerList.aspx");
 
+            if (CustomerID == -1)
+            {
+                //set the thisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add new record 
+                CustomerList.Add();
+            }
+             else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the thisCustomer 
+                CustomerList.ThisCustomer = ACustomer;
+
+                CustomerList.Update();
+            }   
+            
+            Response.Redirect("CustomerList.aspx");
+                  
         }
         else
         {
             //display the error message 
             lblError.Text = Error;
-        }
-        
+        }        
 
 
     }
@@ -113,5 +152,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerDetails.Text = Acustomer.CustomerDetails;
             txtAccountBalance.Text = Acustomer.AccountBalance.ToString();
         }
+
     }
+
+
 }
