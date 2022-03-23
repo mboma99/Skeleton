@@ -36,4 +36,24 @@ public partial class _1_List : System.Web.UI.Page
         //redirect to data entry page 
         Response.Redirect("CustomerDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value
+        Int32 CustomerID;
+        //if a reccord has been selected from the list 
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            //get the primafry key value of the record to edit
+            CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+            //stored the data in the session object 
+            Session["CustomerID"] = CustomerID;
+            //redirect to edit page
+            Response.Redirect("CustomerDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to edit from list";
+        }
+    }
 }
