@@ -171,5 +171,51 @@ namespace Testing1
             Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            //create instance of class collection
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create instance of filtered class collection
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a blank string(should return all records)
+            FilteredCustomers.ReportyByName("");
+            //test to see the two values are the same
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            //create instance of class collection
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportyByName("XXXXXX XXXXX");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            //create instance of filtered class collection
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
+            Boolean OK = true;
+            //apply a blank string(should return all records)
+            FilteredCustomers.ReportyByName("Virva Rishi");
+
+            if (FilteredCustomers.Count == 1)
+            {
+                if(FilteredCustomers.CustomerList[0].CustomerID != 5)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }

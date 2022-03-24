@@ -11,18 +11,17 @@ namespace ClassLibrary
         //private memeber for thisAddress
         clsCustomer mThisCustomer = new clsCustomer();
         //CONSTRUCTOR 
-        public clsCustomerCollection()
+        void PopulateArray(clsDataConnection DB)
         {
+            //POPULATE ARRAY LIST
             //variable for index
             Int32 Index = 0;
             //variable to store the record count 
             Int32 RecordCount = 0;
-            //Object for data Connection 
-            clsDataConnection DB = new clsDataConnection();
-            //execute the stored Procedure
-            DB.Execute("sproc_tblCustomer_SelectAll");
+            
             //get the count of record
             RecordCount = DB.Count;
+            mCustomerList = new List<clsCustomer>();
             while (Index < RecordCount)
             {
                 //create blank customer
@@ -37,6 +36,15 @@ namespace ClassLibrary
                 mCustomerList.Add(ACustomer);
                 Index++;
             }
+        }
+        public clsCustomerCollection()
+        {
+            //Object for data Connection 
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored Procedure
+            DB.Execute("sproc_tblCustomer_SelectAll");
+
+            PopulateArray(DB);
         }
         public List<clsCustomer> CustomerList
         {
@@ -98,6 +106,16 @@ namespace ClassLibrary
             //execute the query 
             DB.Execute("sproc_tblCustomer_Delete");
 
+        }
+
+        public void ReportyByName(string Name)
+        {
+            //filters the record bases on full or partial name
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@Name", Name);
+            DB.Execute("sproc_tblCustomer_FilterByName");
+            PopulateArray(DB);
         }
     }
 }
