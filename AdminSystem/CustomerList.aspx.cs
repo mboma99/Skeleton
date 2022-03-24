@@ -81,4 +81,36 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to edit from list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //cerate instance of Customer Collection
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportyByName(txtFilter.Text);
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set name of the primary key
+        lstCustomerList.DataValueField = "CustomerID";
+        //set name of the field to display
+        lstCustomerList.DataValueField = "Name";
+        //bind the sat to the list
+        lstCustomerList.DataBind();
+
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+
+        //cerate instance of Customer Collection
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportyByName("");
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set name of the primary key
+        lstCustomerList.DataValueField = "CustomerID";
+        //set name of the field to display
+        lstCustomerList.DataValueField = "Name";
+        //bind the sat to the list
+        lstCustomerList.DataBind();
+    }
 }
