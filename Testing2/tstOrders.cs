@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Testing2
 {
-    class tstOrders
+    [TestClass]
+    public class tstOrders
     {
+
+        String OrderID = "3";
+        String CustomerID = "3";
+        String Approval = "true";
+        String SaleApplied = "true";
+        String OrderStatus = "En Route";
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+
+            String Error = "";
+
+            Error = AnOrder.Valid(CustomerID, Approval, SaleApplied, OrderStatus);
+
+            Assert.AreEqual(Error, "");
+        }
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -103,7 +121,7 @@ namespace Testing2
 
             Found = AnOrder.Find(OrderIDNO);
 
-            if (AnOrder.OrderIDNO != 3)
+            if (AnOrder.OrderID != 3)
             {
                 OK = false;
             }
@@ -169,7 +187,7 @@ namespace Testing2
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.HasApproval != true)
+            if (AnOrder.Approval != true)
             {
                 OK = false;
             }
@@ -191,7 +209,7 @@ namespace Testing2
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.HasSaleApplied != true)
+            if (AnOrder.SaleApplied != true)
             {
                 OK = false;
             }
@@ -211,9 +229,9 @@ namespace Testing2
             //create some test data to use with the method
             Int32 OrderID = 3;
             //invoke the method
-            Found = AnOrderLine.Find(OrderID);
+            Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrderLine.OrderStatus != "En Route")
+            if (AnOrder.OrderStatus != "En Route")
             {
                 OK = false;
             }
