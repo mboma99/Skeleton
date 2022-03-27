@@ -7,95 +7,99 @@ namespace ClassLibrary
     public class clsOrderLine
     {
         private Int32 mOrderID;
-        public int OrderID 
-        { 
-            get 
+        public int OrderID
+        {
+            get
             {
                 //return the private data
                 return mOrderID;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mOrderID = value;
-            } 
+            }
         }
 
         private Int32 mPetID;
         public int PetID
-        { 
-            get 
+        {
+            get
             {
                 //return the private data
                 return mPetID;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mPetID = value;
-            } 
+            }
         }
 
         private Int32 mQuantity;
         public int Quantity
-        { 
-            get 
+        {
+            get
             {
                 //return the private data
                 return mQuantity;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mQuantity = value;
-            } 
+            }
+        }
+
+        public string Valid(string petID, string quantity, string pricePaid, string petPrice, string orderStatus)
+        {
+            return "";
         }
 
         private double mPricePaid;
         public double PricePaid
-        { 
-            get 
+        {
+            get
             {
                 //return the private data
                 return mPricePaid;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mPricePaid = value;
-            } 
+            }
         }
-        
+
         private double mPetPrice;
         public double PetPrice
-        { 
-            get 
+        {
+            get
             {
                 //return the private data
                 return mPetPrice;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mPetPrice = value;
-            } 
+            }
         }
 
         private string mOrderStatus;
         public string OrderStatus
-        { 
-            get 
+        {
+            get
             {
                 //return the private data
                 return mOrderStatus;
             }
-            set 
+            set
             {
                 //set the value of the private data member
                 mOrderStatus = value;
-            } 
+            }
         }
-        
 
         public bool Find(int OrderID)
         {
@@ -108,5 +112,5 @@ namespace ClassLibrary
 
             return true;
         }
-    }    
+    }
 }

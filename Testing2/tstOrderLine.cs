@@ -1,13 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Testing2
 {
-    class tstOrderLine
+    [TestClass]
+    public class tstOrderLine
     {
+
+        String OrderID = "3";
+        String PetID = "3";
+        String Quantity = "3";
+        String PricePaid = "3.55";
+        String PetPrice = "3.55";
+        String OrderStatus = "En Route";
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsOrderLine AnOrderLine = new clsOrderLine();
+
+            String Error = "";
+
+            Error = AnOrderLine.Valid(PetID, Quantity, PricePaid, PetPrice, OrderStatus);
+
+            Assert.AreEqual(Error, "");
+        }
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -116,7 +136,7 @@ namespace Testing2
 
             Found = AnOrderLine.Find(QuantityNO);
 
-            if (AnOrderLine.QuantityNO != 3)
+            if (AnOrderLine.Quantity != 3)
             {
                 OK = false;
             }
