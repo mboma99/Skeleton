@@ -13,27 +13,28 @@
             <asp:TextBox ID="txtOrderID" runat="server"></asp:TextBox>
              <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
             <br />
-            <asp:Label ID="lblPetID" runat="server" Text="Pet ID" width="57px"></asp:Label>
+            <asp:Label ID="lblPetID" runat="server" Text="Pet ID" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtPetID" runat="server"></asp:TextBox>
             <br />
-            <asp:Label ID="lblQuantity" runat="server" Text="Quantity" width="57px"></asp:Label>
+            <asp:Label ID="lblQuantity" runat="server" Text="Quantity" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox>
             <br />
-            <asp:Label ID="lblPricePaid" runat="server" Text="Price Paid" width="57px"></asp:Label>
+            <asp:Label ID="lblPricePaid" runat="server" Text="Price Paid" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtPricePaid" runat="server"></asp:TextBox>
             <br />
-            <asp:Label ID="lblPetPrice" runat="server" Text="Pet Price" width="57px"></asp:Label>
+            <asp:Label ID="lblPetPrice" runat="server" Text="Pet Price" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtPetPrice" runat="server"></asp:TextBox>
              <br />
-            <asp:Label ID="lblOrderStatus" runat="server" Text="Order Status" width="57px"></asp:Label>
+            <asp:Label ID="lblOrderStatus" runat="server" Text="Order Status" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtOrderStatus" runat="server"></asp:TextBox>
 
             <br />
             <br />
-            <asp:CheckBox ID="chkActive" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Active" />
+            <asp:Label ID="lblActive" runat="server" style="margin-bottom:10px;" Text="Active" Width="96px"></asp:Label>
+        <asp:CheckBox ID="chkActive" runat="server" CssClass="btn" />
             <br />
             <br />
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <asp:Label ID="lblError" ForeColor="Red" style="margin-bottom:10px;" runat="server"></asp:Label>
             <br />
             <br />
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
