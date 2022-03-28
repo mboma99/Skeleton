@@ -12,8 +12,12 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         clsOrders AnOrder = new clsOrders();
 
-        AnOrder = (clsOrders)Session["AnAddress"];
+        AnOrder = (clsOrders)Session["AnOrder"];
 
+        Response.Write(AnOrder.OrderID);
         Response.Write(AnOrder.OrderStatus);
+        Response.Write(AnOrder.SaleApplied);
+        Response.Write(AnOrder.Approval);
+        Response.Write(AnOrder.CustomerID);
     }
 }

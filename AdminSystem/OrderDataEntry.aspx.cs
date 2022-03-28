@@ -17,75 +17,57 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //if this is not a new record
             if (OrderID != -1)
             {
-                DisplayOrders();
+                DisplayOrder();
             }
         }
     }
 
-    private void DisplayOrders()
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
-        clsOrdersCollection OrderList = new clsOrdersCollection();
-
-        OrderList.SingleOrder.Find(OrderID);
-
-        txtOrderID.Text = OrderList.SingleOrder.OrderID.ToString();
-        txtCustomerID.Text = OrderList.SingleOrder.CustomerID.ToString();
-        txtApproval.Text = OrderList.SingleOrder.Approval.ToString();
-        txtOrderStatus.Text = OrderList.SingleOrder.OrderStatus;
-        txtSaleApplied.Text = OrderList.SingleOrder.SaleApplied.ToString();
-
-    }
-
-    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-    {
-
+        //redirect back to the list page
+        Response.Redirect("OrderList.aspx");
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsOrders AnOrder = new clsOrders();
 
+        string OrderStatus = txtOrderStatus.Text;
         string CustomerID = txtCustomerID.Text;
         string Approval = txtApproval.Text;
         string SaleApplied = txtSaleApplied.Text;
-        string OrderStatus = txtOrderStatus.Text;
 
         string Error = "";
 
-        Error = AnOrder.Valid(CustomerID, Approval, SaleApplied, OrderStatus);
+        Error = AnOrder.Valid(SaleApplied, Approval, CustomerID, OrderStatus);
 
         if (Error == "")
         {
             //clear Error label
             lblError.Text = "";
             try
-            {
-                //capture the staff data
+            {                
                 AnOrder.OrderStatus = txtOrderStatus.Text;
                 AnOrder.OrderID = Convert.ToInt32(txtOrderID.Text);
+                AnOrder.CustomerID = Convert.ToInt32(txtCustomerID.Text);
                 AnOrder.Approval = Convert.ToBoolean(txtApproval.Text);
                 AnOrder.SaleApplied = Convert.ToBoolean(txtSaleApplied.Text);
-                AnOrder.CustomerID = Convert.ToInt32(txtCustomerID.Text);
 
-                //create a new instance of the staff collection
-                clsOrdersCollection OrdersList = new clsOrdersCollection();
+                clsOrdersCollection OrderList = new clsOrdersCollection();
 
-                //if this is a new record i.e. StaffID = -1 then add the data
                 if (OrderID == -1)
                 {
-                    //set the SingleStaff property
-                    OrdersList.SingleOrder = AnOrder;
+                    OrderList.SingleOrder = AnOrder;
                     //add the new record
-                    OrdersList.Add();
+                    OrderList.Add();
                 }
                 else //otherwise it must be a update
                 {
                     //find the record to update
-                    OrdersList.SingleOrder.Find(OrderID);
-                    //set the SingleStaff property
-                    OrdersList.SingleOrder = AnOrder;
+                    OrderList.SingleOrder.Find(OrderID);
+                    OrderList.SingleOrder = AnOrder;
                     //update the record
-                    OrdersList.Update();
+                    OrderList.Update();
                 }
 
                 //redirect back to the list page
@@ -120,11 +102,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Found == true)
         {
+            txtSaleApplied.Text = AnOrder.SaleApplied.ToString();
             txtApproval.Text = AnOrder.Approval.ToString();
             txtCustomerID.Text = AnOrder.CustomerID.ToString();
-            txtSaleApplied.Text = AnOrder.SaleApplied.ToString();
             txtOrderStatus.Text = AnOrder.OrderStatus;
             txtOrderID.Text = AnOrder.OrderID.ToString();
         }
+    }
+
+    private void DisplayOrder()
+    {
+        clsOrdersCollection OrderList = new clsOrdersCollection();
+
+        OrderList.SingleOrder.Find(OrderID);
+
+        txtOrderID.Text = OrderList.SingleOrder.OrderID.ToString();
+        txtSaleApplied.Text = OrderList.SingleOrder.SaleApplied.ToString();
+        txtApproval.Text = OrderList.SingleOrder.Approval.ToString();
+        txtOrderStatus.Text = OrderList.SingleOrder.OrderStatus;
+        txtCustomerID.Text = OrderList.SingleOrder.CustomerID.ToString();
     }
 }

@@ -8,7 +8,6 @@ using ClassLibrary;
 
 public partial class _Default : System.Web.UI.Page
 {
-
     Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,9 +22,10 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-    protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        //redirect back to the list page
+        Response.Redirect("OrderLineList.aspx");
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -48,21 +48,16 @@ public partial class _Default : System.Web.UI.Page
             lblError.Text = "";
             try
             {
-                //capture the staff data
+                
                 AnOrderLine.OrderStatus = txtOrderStatus.Text;
                 AnOrderLine.OrderID = Convert.ToInt32(txtOrderID.Text);
                 AnOrderLine.PetID = Convert.ToInt32(txtPetID.Text);
                 AnOrderLine.Quantity = Convert.ToInt32(txtQuantity.Text);
                 AnOrderLine.PetPrice = Convert.ToDouble(txtPetPrice.Text);
                 AnOrderLine.PricePaid = Convert.ToDouble(txtPricePaid.Text);
-
-                //create a new instance of the staff collection
                 clsOrderLineCollection OrderLineList = new clsOrderLineCollection();
-
-                //if this is a new record i.e. StaffID = -1 then add the data
                 if (OrderID == -1)
                 {
-                    //set the SingleStaff property
                     OrderLineList.SingleOrderLine = AnOrderLine;
                     //add the new record
                     OrderLineList.Add();
@@ -71,7 +66,6 @@ public partial class _Default : System.Web.UI.Page
                 {
                     //find the record to update
                     OrderLineList.SingleOrderLine.Find(OrderID);
-                    //set the SingleStaff property
                     OrderLineList.SingleOrderLine = AnOrderLine;
                     //update the record
                     OrderLineList.Update();

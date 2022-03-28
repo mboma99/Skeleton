@@ -98,13 +98,13 @@ namespace ClassLibrary
             DB.Execute("sproc_tblOrders_Delete");
         }
 
-        public void FilterByorderStatus(bool orderStatus)
+        public void FilterByOrderStatus(bool orderStatus)
         {
             clsDataConnection DB = new clsDataConnection();
 
             DB.AddParameter("@orderStatus", orderStatus);
 
-            DB.Execute("sproc_tbltblOrders_FilterByorderStatus");
+            DB.Execute("sproc_tbltblOrders_FilterByOrderStatus");
 
             PopulateList(DB);
         }
