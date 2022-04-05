@@ -190,7 +190,7 @@ namespace Testing1
         {
             //create instance of class collection
             clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
-            FilteredCustomers.ReportyByName("XXXXXX XXXXX");
+            FilteredCustomers.ReportyByName("XXXXXX");
             Assert.AreEqual(0, FilteredCustomers.Count);
         }
 
@@ -202,7 +202,7 @@ namespace Testing1
 
             Boolean OK = true;
             //apply a blank string(should return all records)
-            FilteredCustomers.ReportyByName("Virva Rishi");
+            FilteredCustomers.ReportyByName("Virva");
 
             if (FilteredCustomers.Count == 1)
             {

@@ -731,7 +731,7 @@ namespace Testing1
             //String variable to store any Error Message
             String Error = "";
             //create some test to pass test
-            String AccountBalance = "1.00";
+            String AccountBalance = "0.00";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT
@@ -745,7 +745,7 @@ namespace Testing1
             //String variable to store any Error Message
             String Error = "";
             //create some test to pass test
-            String AccountBalance = "2.00";
+            String AccountBalance = "0.01";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT
@@ -773,7 +773,7 @@ namespace Testing1
             //String variable to store any Error Message
             String Error = "";
             //create some test to pass test
-            String AccountBalance = "998.99";
+            String AccountBalance = "999.99";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT
@@ -787,7 +787,7 @@ namespace Testing1
             //String variable to store any Error Message
             String Error = "";
             //create some test to pass test
-            String AccountBalance = "999.99";
+            String AccountBalance = "1000.00";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT
@@ -801,7 +801,7 @@ namespace Testing1
             //String variable to store any Error Message
             String Error = "";
             //create some test to pass test
-            String AccountBalance = "1000.99";
+            String AccountBalance = "1000.01";
             //Invoke the method 
             Error = Acustomer.Valid(Name, Dob, CustomerDetails, AccountBalance);
             //TEST TO SEE THAT THE RESULTS ARE CORRECT

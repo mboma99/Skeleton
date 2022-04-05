@@ -99,6 +99,11 @@ namespace ClassLibrary
             {
                 Error += "The name cannot have more than 50 characters : ";
             }
+            if (name.Contains("@")||name.Contains("$") || name.Contains("£") || name.Contains("%") || name.Contains("!")
+                || name.Contains("#") || name.Contains("~") || name.Contains("?"))
+            {
+                Error += "Invalid characters @,$,£,%,!,#,~,? please remove from name : ";
+            }
             try
             {
                 //copy dob to DataTemp
@@ -115,7 +120,7 @@ namespace ClassLibrary
             }
             catch
             {
-                Error += "The date was not a valid date : ";
+                Error += "This is not a valid date format : ";
             }
 
             if (customerDetails.Length == 0)
@@ -130,6 +135,11 @@ namespace ClassLibrary
             {
                 Error += "Please Enter valid details, cannot be less than 1 character : ";
             }
+            if (customerDetails.Contains("@") || customerDetails.Contains("$") || customerDetails.Contains("£") || customerDetails.Contains("%") || customerDetails.Contains("!")
+                || customerDetails.Contains("#") || customerDetails.Contains("~") || customerDetails.Contains("?"))
+            {
+                Error += "Invalid characters @,$,£,%,!,#,~,? please remove from customer details : ";
+            }
             try
             {
                 DoubleTemp = Convert.ToDouble(accountBalance);
@@ -139,7 +149,7 @@ namespace ClassLibrary
                 }
                 if (DoubleTemp > 1000.00)
                 {
-                    Error += "Value is more than valid Account Balance. 999.99 is allowed maximum : ";
+                    Error += "Value is more than valid Account Balance. 1000.00 is allowed maximum : ";
                 }
 
             }
