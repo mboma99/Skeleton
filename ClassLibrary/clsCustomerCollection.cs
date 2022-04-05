@@ -13,12 +13,10 @@ namespace ClassLibrary
         //CONSTRUCTOR 
         void PopulateArray(clsDataConnection DB)
         {
-            //POPULATE ARRAY LIST
             //variable for index
             Int32 Index = 0;
             //variable to store the record count 
             Int32 RecordCount = 0;
-            
             //get the count of record
             RecordCount = DB.Count;
             mCustomerList = new List<clsCustomer>();
@@ -43,7 +41,6 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //execute the stored Procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-
             PopulateArray(DB);
         }
         public List<clsCustomer> CustomerList
@@ -112,7 +109,6 @@ namespace ClassLibrary
         {
             //filters the record bases on full or partial name
             clsDataConnection DB = new clsDataConnection();
-            //set the parameters for the stored procedure
             DB.AddParameter("@Name", Name);
             DB.Execute("sproc_tblCustomer_FilterByName");
             PopulateArray(DB);

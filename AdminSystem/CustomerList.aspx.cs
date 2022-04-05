@@ -91,7 +91,7 @@ public partial class _1_List : System.Web.UI.Page
         //set name of the primary key
         lstCustomerList.DataValueField = "CustomerID";
         //set name of the field to display
-        lstCustomerList.DataValueField = "Name";
+        lstCustomerList.DataTextField = "Name";
         //bind the sat to the list
         lstCustomerList.DataBind();
 
@@ -109,7 +109,7 @@ public partial class _1_List : System.Web.UI.Page
         //set name of the primary key
         lstCustomerList.DataValueField = "CustomerID";
         //set name of the field to display
-        lstCustomerList.DataValueField = "Name";
+        lstCustomerList.DataTextField = "Name";
         //bind the sat to the list
         lstCustomerList.DataBind();
     }
