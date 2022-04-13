@@ -73,7 +73,7 @@ namespace ClassLibrary
             DB.AddParameter("Approval", mSingleOrder.Approval);
             DB.AddParameter("SaleApplied", mSingleOrder.SaleApplied);
 
-            return DB.Execute("sproc_tblOrders_SelectAll");
+            return DB.Execute("sproc_tblOrders_Insert");
         }
 
         public void Update()
@@ -104,7 +104,7 @@ namespace ClassLibrary
 
             DB.AddParameter("@orderStatus", orderStatus);
 
-            DB.Execute("sproc_tbltblOrders_FilterByOrderStatus");
+            DB.Execute("sproc_tblOrders_FilterByOrderStatus");
 
             PopulateList(DB);
         }

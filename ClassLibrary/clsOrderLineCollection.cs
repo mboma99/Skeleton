@@ -65,7 +65,6 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
 
-            DB.AddParameter("OrderID", mSingleOrderLine.OrderID);
             DB.AddParameter("OrderStatus", mSingleOrderLine.OrderStatus);
             DB.AddParameter("PetID", mSingleOrderLine.PetID);
             DB.AddParameter("PetPrice", mSingleOrderLine.PetPrice);

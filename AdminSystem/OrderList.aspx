@@ -19,10 +19,9 @@
         <asp:GridView ID="grvOrderList" HeaderStyle-BackColor="LightGray" CellPadding="5" CellSpacing="15" HeaderStyle-ForeColor="Black" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="grvOrderList_OnSelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="orderID" HeaderText="Order ID" />
-                <asp:BoundField DataField="petID" HeaderText="Pet ID" />
-                <asp:BoundField DataField="quantity" HeaderText="Quantity" />
-                <asp:BoundField DataField="pricePaid" HeaderText="Price Paid" />
-                <asp:BoundField DataField="petPrice" HeaderText="Pet Price" />
+                <asp:BoundField DataField="customerID" HeaderText="Customer ID" />
+                <asp:BoundField DataField="approval" HeaderText="Approval" />
+                <asp:BoundField DataField="saleApplied" HeaderText="Sale Applied" />
                 <asp:BoundField DataField="orderStatus" HeaderText="Order Status" />
                 <asp:ButtonField Text="Select" CommandName="Select" />
             </Columns>

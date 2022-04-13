@@ -25,10 +25,7 @@
             <asp:Label ID="lblOrderStatus" runat="server" Text="Order Status" style="margin-bottom:10px;" Width="96px"></asp:Label>
             <asp:TextBox ID="txtOrderStatus" runat="server"></asp:TextBox>
 
-            <br />
-            <br />
-            <asp:Label ID="lblActive" runat="server" style="margin-bottom:10px;" Text="Active" Width="96px"></asp:Label>
-            <asp:CheckBox ID="chkActive" runat="server" CssClass="btn" />
+            
             <br />
             <br />
             <asp:Label ID="lblError" ForeColor="Red" style="margin-bottom:10px;" runat="server"></asp:Label>

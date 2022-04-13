@@ -30,34 +30,38 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
+
         clsOrderLine AnOrderLine = new clsOrderLine();
 
-        string OrderStatus = txtOrderStatus.Text;
-        string PetID = txtPetID.Text;
-        string PetPrice = txtPetPrice.Text;
-        string PricePaid = txtPricePaid.Text;
-        string Quantity = txtQuantity.Text;
-
+        string petID = txtPetID.Text;
+        string quantity = txtQuantity.Text;
+        string pricePaid = txtPricePaid.Text;
+        string petPrice = txtPetPrice.Text;
+        string orderStatus = txtOrderStatus.Text;
+        //variable to store any error messages
         string Error = "";
-
-        Error = AnOrderLine.Valid(PetID, Quantity, PricePaid, PetPrice, OrderStatus);
-
+        //Validate the data
+        Error = AnOrderLine.Valid(petID, quantity, pricePaid, petPrice, orderStatus);
         if (Error == "")
         {
             //clear Error label
             lblError.Text = "";
             try
             {
-                
-                AnOrderLine.OrderStatus = txtOrderStatus.Text;
+
                 AnOrderLine.OrderID = Convert.ToInt32(txtOrderID.Text);
                 AnOrderLine.PetID = Convert.ToInt32(txtPetID.Text);
                 AnOrderLine.Quantity = Convert.ToInt32(txtQuantity.Text);
+                AnOrderLine.OrderStatus = txtOrderStatus.Text;
                 AnOrderLine.PetPrice = Convert.ToDouble(txtPetPrice.Text);
                 AnOrderLine.PricePaid = Convert.ToDouble(txtPricePaid.Text);
+
                 clsOrderLineCollection OrderLineList = new clsOrderLineCollection();
+
+
                 if (OrderID == -1)
                 {
+
                     OrderLineList.SingleOrderLine = AnOrderLine;
                     //add the new record
                     OrderLineList.Add();
@@ -66,13 +70,14 @@ public partial class _Default : System.Web.UI.Page
                 {
                     //find the record to update
                     OrderLineList.SingleOrderLine.Find(OrderID);
+
                     OrderLineList.SingleOrderLine = AnOrderLine;
                     //update the record
                     OrderLineList.Update();
                 }
 
                 //redirect back to the list page
-                Response.Redirect("OrderLineViewer.aspx");
+                Response.Redirect("OrderLineList.aspx");
             }
             catch
             {
@@ -92,23 +97,29 @@ public partial class _Default : System.Web.UI.Page
     protected void btnFind_Click(object sender, EventArgs e)
     {
         clsOrderLine AnOrderLine = new clsOrderLine();
-
         Int32 OrderID;
-
         Boolean Found = false;
-
         OrderID = Convert.ToInt32(txtOrderID.Text);
-
         Found = AnOrderLine.Find(OrderID);
-
+        
         if (Found == true)
         {
-            txtQuantity.Text = AnOrderLine.Quantity.ToString();
-            txtPricePaid.Text = AnOrderLine.PricePaid.ToString();
-            txtPetPrice.Text = AnOrderLine.PetPrice.ToString();
-            txtPetID.Text = AnOrderLine.PetID.ToString();
+            //txtOrderID.Text = AnOrderLine.OrderID;
+            txtPetID.Text = Convert.ToString(AnOrderLine.PetID);
+            txtQuantity.Text = Convert.ToString(AnOrderLine.Quantity);
+            txtPricePaid.Text = Convert.ToString(AnOrderLine.PricePaid);
+            txtPetPrice.Text = Convert.ToString(AnOrderLine.PetPrice);
             txtOrderStatus.Text = AnOrderLine.OrderStatus;
-            txtOrderID.Text = AnOrderLine.OrderID.ToString();
+            lblError.Text = "";
+        }
+        else
+        {
+            txtPetID.Text = string.Empty;
+            txtQuantity.Text = string.Empty;
+            txtPricePaid.Text = string.Empty;
+            txtPetPrice.Text = string.Empty;
+            txtOrderStatus.Text = string.Empty;
+            lblError.Text = "OrderID: " + OrderID + " doesn't exist";
         }
     }
 

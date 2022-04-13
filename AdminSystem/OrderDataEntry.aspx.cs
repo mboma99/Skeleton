@@ -71,7 +71,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 }
 
                 //redirect back to the list page
-                Response.Redirect("OrderViewer.aspx");
+                Response.Redirect("OrderList.aspx");
             }
             catch
             {
@@ -91,22 +91,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnFind_Click(object sender, EventArgs e)
     {
         clsOrders AnOrder = new clsOrders();
-
         Int32 OrderID;
-
         Boolean Found = false;
-
         OrderID = Convert.ToInt32(txtOrderID.Text);
-
         Found = AnOrder.Find(OrderID);
 
         if (Found == true)
         {
-            txtSaleApplied.Text = AnOrder.SaleApplied.ToString();
-            txtApproval.Text = AnOrder.Approval.ToString();
-            txtCustomerID.Text = AnOrder.CustomerID.ToString();
+            //txtOrderID.Text = AnOrder.OrderID;
+            txtCustomerID.Text = Convert.ToString(AnOrder.CustomerID);
+            txtApproval.Text = Convert.ToString(AnOrder.Approval);
+            txtSaleApplied.Text = Convert.ToString(AnOrder.SaleApplied);
             txtOrderStatus.Text = AnOrder.OrderStatus;
-            txtOrderID.Text = AnOrder.OrderID.ToString();
+            lblError.Text = "";
+        }
+        else
+        {
+            txtCustomerID.Text = string.Empty;
+            txtApproval.Text = string.Empty;
+            txtSaleApplied.Text = string.Empty;
+            txtOrderStatus.Text = string.Empty;
+            lblError.Text = "OrderID: " + OrderID + " doesn't exist";
         }
     }
 

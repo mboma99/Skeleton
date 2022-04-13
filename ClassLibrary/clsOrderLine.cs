@@ -103,14 +103,28 @@ namespace ClassLibrary
 
         public bool Find(int OrderID)
         {
-            mOrderID = 3;
-            mPetID = 3;
-            mQuantity = 3;
-            mPricePaid = 3.55;
-            mPetPrice = 3.55;
-            mOrderStatus = "En Route";
-
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the staff ID to search for
+            DB.AddParameter("@OrderID", OrderID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrderLine_FilterByOrderID");
+            //if one record is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mPetID = Convert.ToInt32(DB.DataTable.Rows[0]["PetID"]);
+                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
+                mPricePaid = Convert.ToDouble(DB.DataTable.Rows[0]["PricePaid"]);
+                mPetPrice = Convert.ToDouble(DB.DataTable.Rows[0]["PetPrice"]);
+                mOrderStatus = Convert.ToString(DB.DataTable.Rows[0]["OrderStatus"]);
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
